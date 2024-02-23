@@ -37,7 +37,7 @@
             padding: 10px;
             background-color: #333;
         }
-        h1{
+        h1 {
             color: white;
             font-size: 20px;
             font-style: normal;
@@ -56,29 +56,9 @@
         <input type="text" id="inp" class="commentbox" placeholder="Enter your comment...">
         <button id="submit" onclick="comment_.postit()">Submit</button>
         <button id="delete" onclick="comment_.deleteit()">Clear</button>
+        <button id="identify" onclick="txtmethods.identifyvowel()">Identify Vowels</button> <!-- Added button for calling identifyvowel method -->
     </div>
     <div id="comments" style="margin-bottom: 100px;"></div> <!-- Margin to create space for comments -->
 </body>
-<script>
-    const comment_ = {
-        postit: function() {
-            var input = document.getElementById('inp').value;
-            if(input.trim() !== '') { // Check if the input is not empty or contains only spaces
-                var newComment = document.createElement('h1');
-                newComment.textContent = input;
-                document.getElementById('comments').appendChild(newComment);
-                document.getElementById('inp').value = ''; // Clear input after posting comment
-            }
-        },
-
-        deleteit: function() {
-            var commentsDiv = document.getElementById('comments');
-            var lastComment = commentsDiv.lastElementChild;
-            if(lastComment) { // Check if there's a comment to delete
-                commentsDiv.removeChild(lastComment);
-            }
-        }
-    };
-</script>
 <script src="home.js"></script>
 </html>
