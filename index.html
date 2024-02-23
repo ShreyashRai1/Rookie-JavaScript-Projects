@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: darkgrey;
+        }
+        .commentbox {
+            width: calc(100% - 520px); /* Adjust the width to accommodate buttons */
+            height: 70px;
+            font-size: 50px;
+        }
+        button {
+            width: 250px;
+            height: 70px;
+        }
+        #controllpanel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+        }
+        h1{
+            color: white;
+            font-size: 50px;
+            font-style: normal;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <center>
+            <h1>Javascript Project 1: Texting interface</h1>
+        </center>
+    </header>
+    <div id="controllpanel">
+        <input type="text" id="inp" class="commentbox">
+        <button id="submit" onclick="comment_.postit()">Submit</button>
+        <button id="delete" onclick="comment_.deleteit()">Clear</button>
+    </div>
+    <div id="comments" style="margin-bottom: 100px;"></div> <!-- Margin to create space for comments -->
+</body>
+<script>
+    const comment_ = {
+        postit: function() {
+            var input = document.getElementById('inp').value;
+            var newComment = document.createElement('h1');
+            newComment.textContent = input;
+            document.getElementById('comments').appendChild(newComment);
+        },
+
+        deleteit: function() {
+            var commentsDiv = document.getElementById('comments');
+            var lastComment = commentsDiv.lastElementChild;
+            commentsDiv.removeChild(lastComment);
+        }
+    };
+</script>
+<script src="home.js"></script>
+</html>
