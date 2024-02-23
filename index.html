@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project1</title>
+    <title>Document</title>
     <style>
         body, html {
             height: 100%;
@@ -12,29 +12,37 @@
             background-color: darkgrey;
         }
         .commentbox {
-            width: calc(100% - 520px); /* Adjust the width to accommodate buttons */
-            height: 70px;
-            font-size: 50px;
+            width: calc(100% - 20px); /* Adjust the width to accommodate buttons */
+            height: 50px;
+            font-size: 20px;
+            margin: 10px;
+            padding: 5px;
+            box-sizing: border-box;
         }
         button {
-            width: 250px;
-            height: 70px;
+            width: calc(50% - 20px);
+            height: 50px;
+            font-size: 20px;
+            margin: 10px;
+            box-sizing: border-box;
         }
         #controllpanel {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             bottom: 0;
             width: 100%;
             padding: 10px;
+            background-color: #333;
         }
         h1{
             color: white;
-            font-size: 50px;
+            font-size: 20px;
             font-style: normal;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            padding-left: 100px;
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -45,7 +53,7 @@
         </center>
     </header>
     <div id="controllpanel">
-        <input type="text" id="inp" class="commentbox">
+        <input type="text" id="inp" class="commentbox" placeholder="Enter your comment...">
         <button id="submit" onclick="comment_.postit()">Submit</button>
         <button id="delete" onclick="comment_.deleteit()">Clear</button>
     </div>
@@ -55,15 +63,20 @@
     const comment_ = {
         postit: function() {
             var input = document.getElementById('inp').value;
-            var newComment = document.createElement('h1');
-            newComment.textContent = input;
-            document.getElementById('comments').appendChild(newComment);
+            if(input.trim() !== '') { // Check if the input is not empty or contains only spaces
+                var newComment = document.createElement('h1');
+                newComment.textContent = input;
+                document.getElementById('comments').appendChild(newComment);
+                document.getElementById('inp').value = ''; // Clear input after posting comment
+            }
         },
 
         deleteit: function() {
             var commentsDiv = document.getElementById('comments');
             var lastComment = commentsDiv.lastElementChild;
-            commentsDiv.removeChild(lastComment);
+            if(lastComment) { // Check if there's a comment to delete
+                commentsDiv.removeChild(lastComment);
+            }
         }
     };
 </script>
